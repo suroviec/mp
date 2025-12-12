@@ -9,6 +9,9 @@
 body {
   font-family: sans-serif;
 }
+a {
+  color: black;
+}
 .header {
   display: grid;
   justify-items: center;
