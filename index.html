@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class='header'>
+    </div>
+    <div id="app"></div>
+    <script type="module">
+
+        const response = await fetch('./ps.json');  
+          const ps = await response.json();
+
+        let he = document.querySelector('.header');
+        /* hs.forEach(h => {
+            h.addEventListener('click', () => {
+              load(h.dataset.id);
+            })
+        }); */
+        let a = ps.length / 100;
+        for(let i = 0; i < a; i++) {
+          he.innerHTML += `<strong data-id="${i}">${i}</strong>`;
+        }
+
+        he.addEventListener('click', (e) => {
+          if(e.target.dataset.id) {
+            e.target.style.color = 'red';
+            load(e.target.dataset.id)
+          };
+        })
+
+        const load = async (a) => {
+          let cont = document.querySelector('#app');
+          
+          cont.innerHTML = '';
+          let min = a * 100;
+          let max = min + 100;
+          console.log(min + '  ' + max );
+          for(let i = min; i < max; i++) {
+            let classN = ps[i].all_status == 'Zakończona' ? 'off' : '';
+            let classA = ps[i].all_am != ps[i].ido_am ? 'aerr' : 'aok';
+            let classT = ps[i].all_name != ps[i].ido_name ? 'terr' : 'tok';
+            cont.innerHTML += `
+              <div class="p ${classN} ${classA} ${classT}">
+                <div>${ps[i].all_id}</div>
+                <div class="t" >${ps[i].all_name}</div>
+                <div class="am" >${ps[i].all_amount}</div>
+                <div class="img"><img src="${ps[i].all_img}" /></div>
+                <div class="img"><img src="${ps[i].ido_img}" /></div>
+                <div  class="am" >${ps[i].ido_amount}</div>
+                <div  class="t" >${ps[i].ido_name}</div>
+                <div>${ps[i].ido_id}</div>
+              </div>
+            `;
+          }
+        }
+    </script>
+  </body>
+</html>
