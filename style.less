@@ -1,4 +1,5 @@
 .img {
+    height: 200px;
     img {
         object-fit: contain;
         height: 100%;
@@ -39,14 +40,31 @@ body {
             font-weight: 600;
         };
     }
+    &.terr {
+        .t {
+            color: grey;
+            font-weight: 600;
+        };
+    }
+    &.aerr {
+        .am {
+            color: red;
+            font-weight: 600;
+        };
+    }
+
+    .m {
+        text-align: center;
+    }
 
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 110px 200px 30px 150px 150px 70px 200px 100px ;
+    grid-template-columns: 300px 50px 180px 180px 50px 300px;
     align-items: center;
     grid-gap: 10px;
     padding-bottom: 50px;
     padding-top: 50px;
     border-bottom: 1px solid grey;
+    justify-content: center;
 
 }
