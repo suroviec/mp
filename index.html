@@ -39,14 +39,21 @@
             let classN = ps[i].all_status == 'Zakończona' ? 'off' : '';
             let classA = ps[i].all_am != ps[i].ido_am ? 'aerr' : 'aok';
             let classT = ps[i].all_name != ps[i].ido_name ? 'terr' : 'tok';
+            let alt = ps[i].ido_name ? '' : ps[i].all_id_alt;
+            let altId = ps[i].ido_id_alt ? ps[i].ido_id_alt : '';
+            let altT = ((ps[i].ido_id_alt) &&( ps[i].ido_name == null)) ? 'sprawdź' : '';
             cont.innerHTML += `
               <div class="p ${classN} ${classA} ${classT}">
-                <div class="t">${ps[i].all_name}<br/>[<a target="_blank" href="https://allegro.pl/oferta/${ps[i].all_id}">${ps[i].all_id}</a>]</div>
+                <div class="t">${ps[i].all_name} [${ps[i].all_sygn}]<br/><a target="_blank" href="https://allegro.pl/oferta/${ps[i].all_id}">${ps[i].all_id}</a></div>
                 <div class="am" >${ps[i].all_amount}</div>
                 <div class="img"><img src="${ps[i].all_img}" /></div>
                 <div class="img"><img src="${ps[i].ido_img}" /></div>
                 <div  class="am" >${ps[i].ido_amount}</div>
-                <div class="t">${ps[i].ido_name}<br/>[<a target="_blank" href="https://motopasjonaci.pl/panel/app/product-edit.php?idt=${ps[i].ido_id}">${ps[i].ido_id}</a>]</div>
+                <div class="t">${ps[i].ido_name}<br/><a target="_blank" href="https://motopasjonaci.pl/panel/app/product-edit.php?idt=${ps[i].ido_id}">${ps[i].ido_id}</a></div>
+                <div class="alt"><a target="_blank" href="https://allegro.pl/oferta/${alt}">${alt}</a>
+                  <br />
+                  <a target="_blank" href="https://motopasjonaci.pl/panel/app/product-edit.php?idt=${altId}#auctions">${altT}</a>
+                </div>
               </div>
             `;
           }
